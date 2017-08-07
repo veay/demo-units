@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8" name="viewport"
 	content="width=device-width, initial-scale=1">
-<title>Spring MVC + Dropzone.js Example</title>
+<title>Springboot + Dropzone.js Example</title>
 
 <link rel="stylesheet" type="text/css"
 	href='/libs/bootstrap-3.1.1/css/bootstrap.min.css'>
