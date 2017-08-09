@@ -13,6 +13,7 @@
         <module>activemq</module>
         <module>dropzonejs</module>
         <module>dynamic-profiles</module>
+        <module>poi</module>
     </modules>
 
 </project>
