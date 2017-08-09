@@ -33,9 +33,21 @@ $(document).ready(function() {
 
 			// first set autoProcessQueue = false
 			$('#upload-button').on("click", function(e) {
+                e.preventDefault();
+                e.stopPropagation();
 
-				myDropzone.processQueue();
+                if (checkForm()== true) {
+                    if (myDropzone.getQueuedFiles().length > 0) {
+                        myDropzone.processQueue();
+                    } else {
+                        myDropzone.uploadFiles([]); //send empty
+                    }
+                }
 			});
+            this.on("drop", function(file) {
+
+                alert("drop");
+            });
 
 			// customizing the default progress bar
 			this.on("uploadprogress", function(file, progress) {

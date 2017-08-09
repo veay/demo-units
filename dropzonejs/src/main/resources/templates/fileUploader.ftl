@@ -55,5 +55,14 @@
 		src='/libs/dropzone.js'></script>
 	<script type="text/javascript"
 		src='/js/app.js'></script>
+
+<script type="text/javascript">
+	function checkForm() {
+
+	    alert("进入表单验证");
+
+	    return false;
+    }
+</script>
 </body>
 </html>
