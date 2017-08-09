@@ -14,6 +14,7 @@
         <module>dropzonejs</module>
         <module>dynamic-profiles</module>
         <module>poi</module>
+        <module>jquery-jtable</module>
     </modules>
 
 </project>
