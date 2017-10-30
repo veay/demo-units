@@ -15,6 +15,7 @@
         <module>dynamic-profiles</module>
         <module>poi</module>
         <module>jquery-jtable</module>
+        <module>ssm-demo</module>
     </modules>
 
 </project>
