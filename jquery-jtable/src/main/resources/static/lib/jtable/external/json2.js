@@ -227,7 +227,7 @@ if (typeof JSON !== 'object') {
 
     function str(key, holder) {
 
-        // Produce a string from holder[key].
+        // Produce a string from handle[key].
 
         var i,          // The loop counter.
             k,          // The member key.
