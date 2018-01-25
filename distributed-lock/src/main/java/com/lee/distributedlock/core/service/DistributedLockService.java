@@ -4,6 +4,8 @@ import com.lee.distributedlock.common.entity.Lock;
 import com.lee.distributedlock.common.handle.DistributedLockHandler;
 import com.lee.distributedlock.core.dao.DistributedLockDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,10 +30,19 @@ public class DistributedLockService {
         if (distributedLockHandler.tryLock(lock)){
             id = distributedLockDao.getId();
             if (id>0){
-                distributedLockDao.updateId(id);
+                boolean flag = distributedLockDao.updateId(id);
+                if (!flag){
+                    id = 0;
+                }
             }
             distributedLockHandler.releaseLock(lock);
         }
         return id;
     }
+
+    public void initData(){
+        distributedLockDao.initData();
+    }
+
+
 }

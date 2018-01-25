@@ -27,10 +27,10 @@ public class BuyerService {
     }
 
     public boolean saveBuyer(){
-       String nickPre = "tony";
+       String nickPre = "jack";
         long mobilePre = 13000000000L;
         boolean flag = false;
-        for(int i = 1;i<300;i++){
+        for(int i = 1;i<50;i++){
             List<Buyer> list = buyerUtil.generalBuyer(100000, ""+(i+1)+nickPre+""+i, mobilePre+100000*i);
             flag = buyerDao.saveBuyer(list);
         }

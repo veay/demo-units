@@ -10,16 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2017/12/15
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("")
 public class DistributedLockController {
 
     @Autowired
     DistributedLockService distributedLockService;
 
 
-    @RequestMapping("")
+    @RequestMapping("/")
     public Object getId(){
         long id = distributedLockService.getId();
         return id;
+    }
+
+    @RequestMapping("/init")
+    public void init(){
+        distributedLockService.initData();
     }
 }

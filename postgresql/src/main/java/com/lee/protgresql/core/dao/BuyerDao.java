@@ -36,7 +36,7 @@ public class BuyerDao {
         ResultSet rs = null;
         try{
             conn = dbControl.getConnection();
-            String sql = "select * from dk_buyer_1776 where buyer_nick = ?";
+            String sql = "select * from dk_buyer_56 where buyer_nick = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1,buyerNick);
             rs = ps.executeQuery();
@@ -62,7 +62,7 @@ public class BuyerDao {
         ResultSet rs = null;
         try{
             conn = dbControl.getConnection();
-            String sql = "insert into dk_buyer_1776(buyer_nick,receiver_mobile,buyer_email,average_fee,first_payment,buyer_grade,buy_count,total_fee,first_create_time,first_pay_time,last_create_time,last_trade_time)" +
+            String sql = "insert into dk_buyer_56(buyer_nick,receiver_mobile,buyer_email,average_fee,first_payment,buyer_grade,buy_count,total_fee,first_create_time,first_pay_time,last_create_time,last_trade_time)" +
                     " values(?,?,?,?,?,?,?,?,?,?,?,?)";
             ps = conn.prepareStatement(sql);
             int i = 0;
