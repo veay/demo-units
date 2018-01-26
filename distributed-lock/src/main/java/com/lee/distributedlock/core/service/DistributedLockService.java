@@ -1,12 +1,13 @@
 package com.lee.distributedlock.core.service;
 
-import com.lee.distributedlock.common.entity.Lock;
-import com.lee.distributedlock.common.handle.DistributedLockHandler;
+import com.lee.distributedlock.common.entity.RedissonConnector;
 import com.lee.distributedlock.core.dao.DistributedLockDao;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author jack
@@ -15,28 +16,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class DistributedLockService {
 
-    @Autowired
-    DistributedLockHandler distributedLockHandler;
 
     @Autowired
     DistributedLockDao distributedLockDao;
+
+    @Autowired
+    private RedissonConnector redissonConnector;
     /**
      * 获取唯一主键
      * @return
      */
     public long getId(){
         long id = 0;
-        Lock lock=new Lock("lockk","sssssssss");
-        if (distributedLockHandler.tryLock(lock)){
-            id = distributedLockDao.getId();
-            if (id>0){
-                boolean flag = distributedLockDao.updateId(id);
-                if (!flag){
-                    id = 0;
+
+        RedissonClient redisson= redissonConnector.getClient();
+        RLock rlock = redisson.getLock("lock");
+        try {
+            boolean isLock = rlock.tryLock(1100,5000, TimeUnit.MILLISECONDS);
+            if (isLock) {
+                id = distributedLockDao.getId();
+                if (id>0){
+                   distributedLockDao.updateId(id);
                 }
             }
-            distributedLockHandler.releaseLock(lock);
+        } catch (Exception e) {
+            if (e instanceof InterruptedException){
+                return 0;
+            }
         }
+        rlock.unlock();
         return id;
     }
 

@@ -21,15 +21,16 @@ public class DistributedLockTask {
     DistributedLockService distributedLockService;
 
 
+
     @Async
-    @Scheduled(cron = "0/2 * *  * * ? ")
+    @Scheduled(cron = "0/1 * *  * * ? ")
     public void startSchedule() {
         for(int i=1;i<=10;i++){
             System.out.println("task1-"+(i)+":"+distributedLockService.getId());
         }
     }
     @Async
-    @Scheduled(cron = "0/2 * *  * * ? ")
+    @Scheduled(cron = "0/1 * *  * * ? ")
     public void startSchedule2() {
         for(int i=1;i<=10;i++){
             System.out.println("task2-"+(i)+":"+distributedLockService.getId());
