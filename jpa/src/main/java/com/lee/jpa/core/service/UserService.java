@@ -28,6 +28,7 @@ public class UserService {
         return userRep.findAll();
     }
 
+    //事务处理
     @Transactional()
     public User add(String username,String password){
 
