@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+		PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!--引入mybatis-generator数据库配置-->
+	<properties resource="jdbc.properties" />
+	<!--设置数据库连接驱动-->
+	<classPathEntry
+			location="D:/maven/repository/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar"/>
+	<context id="my" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressDate" value="false"/>
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>
+
+		<!--数据库连接配置-->
+		<jdbcConnection driverClass="${jdbc.driver}"
+						connectionURL="${jdbc.url}" userId="${jdbc.username}"
+						password="${jdbc.password}"/>
+
+		<!--生成实体-->
+		<javaModelGenerator targetPackage="com.lee.entity"
+							targetProject="./src/main/java">
+			<property name="enableSubPackages" value="true"/>
+			<property name="trimStrings" value="true"/>
+		</javaModelGenerator>
+
+		<!--生成xml映射文件-->
+		<sqlMapGenerator targetPackage="com.lee.entity.xml"
+						 targetProject="./src/main/java">
+			<property name="enableSubPackages" value="true"/>
+		</sqlMapGenerator>
+
+		<!--生成接口mapper-->
+		<javaClientGenerator targetPackage="com.lee.dao"
+							 targetProject="./src/main/java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true"/>
+		</javaClientGenerator>
+
+		<table tableName="book" domainObjectName="Book"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!--<property name="useActualColumnNames" value="true"/>-->
+		</table>
+
+		<table tableName="appointment" domainObjectName="Appointment"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<!--<property name="useActualColumnNames" value="true"/>-->
+		</table>
+
+	</context>
+</generatorConfiguration>
